@@ -1,0 +1,74 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: ms-clientes
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/clientes/**
+
+        - id: ms-ventas
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/ventas/**
+
+        - id: ms-figuras
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/v1/figuras/**
+
+        - id: ms-categorias
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/v1/categorias/**
+
+        - id: ms-marcas
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/v1/marcas/**
+
+        - id: ms-personajes
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/v1/personajes/**
+
+        - id: ms-tipopago
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/v1/tipopago/**
+
+        - id: ms-tipoenvio
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/v1/tipoenvio/**
+
+        - id: ms-region
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/v1/region/**
+
+        - id: ms-comuna
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/v1/comuna/**
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    urls:
+      - name: Microservicio de Clientes
+        url: /api/clientes/api-docs
+      - name: Microservicio de Ventas
+        url: /api/ventas/api-docs
+      - name: Microservicio de Catálogo
+        url: /api/v1/figuras/api-docs
+
+
+server:
+  port: 8080
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
