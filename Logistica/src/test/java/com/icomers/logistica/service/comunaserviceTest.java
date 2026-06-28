@@ -28,7 +28,7 @@ public class comunaserviceTest {
     private comunaservice comunaservice;
 
     @Test
-    void listartodos_DeberiaRetornarListaDeComunas() {
+    void listartodos_ListaDeComunas() {
         
         comuna c1 = new comuna(1, "Santiago Centro", true, 1);
         comuna c2 = new comuna(2, "Providencia", true, 1);
@@ -42,7 +42,7 @@ public class comunaserviceTest {
     }
 
     @Test
-    void buscarporid_DeberiaRetornarComuna_CuandoExiste() {
+    void buscarporid_Comuna_Existe() {
         Integer idBuscado = 1;
         comuna comunaSimulada = new comuna(idBuscado, "Maipu", true, 1);
         Mockito.when(comunarepository.findById(idBuscado)).thenReturn(Optional.of(comunaSimulada));
@@ -54,7 +54,7 @@ public class comunaserviceTest {
     }
 
     @Test
-    void buscarporid_DeberiaLanzarExcepcion_CuandoNoExiste() {
+    void buscarporid_Excepcion_NoExiste() {
         Integer idBuscado = 99;
         Mockito.when(comunarepository.findById(idBuscado)).thenReturn(Optional.empty());
 
@@ -66,7 +66,7 @@ public class comunaserviceTest {
     }
 
     @Test
-    void guardarcomuna_DeberiaRetornarComunaGuardada() {
+    void guardarcomuna_ComunaGuardada() {
         comuna nuevaComuna = new comuna(null, "Puente Alto", true, 1);
         comuna comunaGuardada = new comuna(3, "Puente Alto", true, 1);
         
@@ -80,7 +80,7 @@ public class comunaserviceTest {
     }
 
     @Test
-    void actualizarcomuna_DeberiaActualizarYRetornarComuna() {
+    void actualizarcomuna_ActualizarComuna() {
         Integer id = 1;
         comuna datosNuevos = new comuna(null, "Comuna Actualizada", null, null);
         comuna comunaExistente = new comuna(id, "Maipu", true, 1);
@@ -96,7 +96,7 @@ public class comunaserviceTest {
     }
 
     @Test
-    void eliminarcomuna_DeberiaEliminar_CuandoExiste() {
+    void eliminarcomuna_Eliminar_Existe() {
 
         Integer id = 1;
         comuna comunaExistente = new comuna(id, "La Florida", true, 1);

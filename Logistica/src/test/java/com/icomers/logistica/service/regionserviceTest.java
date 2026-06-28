@@ -28,7 +28,7 @@ public class regionserviceTest {
     private regionservice regionservice;
 
     @Test
-    void listartodos_DeberiaRetornarListaDeRegiones() {
+    void listartodos_ListaDeRegiones() {
         region r1 = new region(1, "Metropolitana", true);
         region r2 = new region(2, "Valparaiso", true);
         Mockito.when(regionrepository.findAll()).thenReturn(Arrays.asList(r1, r2));
@@ -41,7 +41,7 @@ public class regionserviceTest {
     }
 
     @Test
-    void buscarporid_DeberiaRetornarRegion_CuandoExiste() {
+    void buscarporid_Region_Existe() {
         Integer idBuscado = 1;
         region regionSimulada = new region(idBuscado, "Metropolitana", true);
         Mockito.when(regionrepository.findById(idBuscado)).thenReturn(Optional.of(regionSimulada));
@@ -53,7 +53,7 @@ public class regionserviceTest {
     }
 
     @Test
-    void buscarporid_DeberiaLanzarExcepcion_CuandoNoExiste() {
+    void buscarporid_Excepcion_NoExiste() {
         Integer idBuscado = 99;
         Mockito.when(regionrepository.findById(idBuscado)).thenReturn(Optional.empty());
 
@@ -65,7 +65,7 @@ public class regionserviceTest {
     }
 
     @Test
-    void guardarregion_DeberiaRetornarRegionGuardada() {
+    void guardarregion_Guardada() {
         region nuevaRegion = new region(null, "Araucania", true);
         region regionGuardada = new region(3, "Araucania", true);
         
@@ -78,7 +78,7 @@ public class regionserviceTest {
     }
 
     @Test
-    void actualizarregion_DeberiaActualizarYRetornarRegion() {
+    void actualizarregion_ActualizarRegion() {
         Integer id = 1;
         region datosNuevos = new region(null, "Region Actualizada", null);
         region regionExistente = new region(id, "Metropolitana", true);
@@ -96,7 +96,7 @@ public class regionserviceTest {
     }
 
     @Test
-    void eliminarregion_DeberiaEliminar_CuandoExiste() {
+    void eliminarregion_Eliminar_Existe() {
        
         Integer id = 1;
         region regionExistente = new region(id, "Metropolitana", true);
