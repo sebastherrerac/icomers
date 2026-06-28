@@ -1,4 +1,4 @@
-package com.icomers.ventas.service; // <-- Paquete actualizado
+package com.icomers.ventas.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +44,7 @@ public class VentasServiceTest {
 
         assertNotNull(resultado);
         assertEquals(25000.0, resultado.getTotal());
-        // Verificamos que el repositorio se llamó 1 sola vez
+        
         verify(ventasRepository, times(1)).save(any(Ventas.class)); 
     }
 
