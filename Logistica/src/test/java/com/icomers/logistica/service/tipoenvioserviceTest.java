@@ -1,15 +1,20 @@
 package com.icomers.logistica.service;
 
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
-
-import java.util.Optional;
-import java.util.List;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -21,16 +26,16 @@ import com.icomers.logistica.repository.tipoenviorepository;
 public class tipoenvioserviceTest {
 
     @Autowired
-    private tipoenvio tipoenvioService;
+    private tipoenvioservice tipoenvioService;
 
     @MockitoBean
     private tipoenviorepository tipoenvioRepository;
 
     private tipoenvio createTipoEnvio() {
         tipoenvio envio = new tipoenvio();
-        envio.setIdTipoEnvio(1);
-        envio.setNombreTipoEnvio("Envio");
-        envio.setCostoEnvio(3000);
+        envio.setIdEnvio(1);
+        envio.setNombreEnvio("Envio");
+        envio.setCostoEnvio(3000.0);
         envio.setActivoEnvio(true);
         return envio;
     }
@@ -69,7 +74,7 @@ public class tipoenvioserviceTest {
             tipoenvioService.buscarporid(idInexistente);
         });
 
-        assertEquals("No se encontro el tipo de envio con ID: " + idInexistente, exception.getMessage());
+        assertEquals("Error, El envio con ID 67 no existe" , exception.getMessage());
         verify(tipoenvioRepository, times(1)).findById(idInexistente);
     }
 
@@ -82,7 +87,7 @@ public class tipoenvioserviceTest {
 
         assertNotNull(resultado);
         assertEquals("Envio", resultado.getNombreEnvio());
-        assertEquals(3000, resultado.getCostoEnvio());
+        assertEquals(3000.0, resultado.getCostoEnvio());
         verify(tipoenvioRepository, times(1)).save(envio);
     }
 
@@ -106,7 +111,7 @@ public class tipoenvioserviceTest {
         
         tipoenvio envioActualizado = new tipoenvio();
         envioActualizado.setNombreEnvio("Envio modificado");
-        envioActualizado.setCostoEnvio(3500);
+        envioActualizado.setCostoEnvio(3500.0);
         envioActualizado.setActivoEnvio(true);
         
         when(tipoenvioRepository.findById(idActualizar)).thenReturn(Optional.of(envioExistente));
@@ -116,8 +121,9 @@ public class tipoenvioserviceTest {
 
         assertNotNull(resultado);
         assertEquals("Envio modificado", resultado.getNombreEnvio());
-        assertEquals(3500, resultado.getCostoEnvio());
-        verify(tipoenvioRepository, times(1)).findById(envioExistente);
+        assertEquals(3500.0, resultado.getCostoEnvio());
+        verify(tipoenvioRepository, times(3)).findById(idActualizar);
+        verify(tipoenvioRepository, times(1)).save(envioExistente);
 
     }
 
@@ -126,12 +132,12 @@ public class tipoenvioserviceTest {
         Integer idEliminar = 1;
         tipoenvio envioExistente = createTipoEnvio();
         when(tipoenvioRepository.findById(idEliminar)).thenReturn(Optional.of(envioExistente));
-        doNothing().when(tipoenvioRepository).deleteById(idEliminar);
+        doNothing().when(tipoenvioRepository).delete(envioExistente);
 
-        tipoenvioservice.eliminartipoenvio(idEliminar);
+        tipoenvioService.eliminartipoenvio(idEliminar);
 
         verify(tipoenvioRepository, times(1)).findById(idEliminar);
-        verify(tipoenvioRepository, times(1)).deleteById(envioExistente);
+        verify(tipoenvioRepository, times(1)).delete(envioExistente);
     }
 
 }

@@ -1,15 +1,19 @@
 package com.icomers.catalogo.service;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
-
-import java.util.Optional;
-import java.util.List;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -100,7 +104,7 @@ public class MarcaServiceTest {
         when(marcaRepository.findById(idEliminar)).thenReturn(Optional.of(marcaExistente));
         doNothing().when(marcaRepository).delete(marcaExistente);
 
-        marcaService.eliminarMarca(idEliminar);
+        String resultado = marcaService.eliminarMarca(idEliminar);
 
 
         verify(marcaRepository, times(1)).findById(idEliminar);
