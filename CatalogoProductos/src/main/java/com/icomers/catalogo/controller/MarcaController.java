@@ -17,7 +17,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/marcas")
-@Tag(name = "Marcas", description = "Gestión de marcas de figuras de colección")
+@Tag(name = "Marcas", description = "Gestion de marcas de figuras de coleccion")
 public class MarcaController {
 
     @Autowired
@@ -34,7 +34,7 @@ public class MarcaController {
 
     @Operation(summary = "Crear marca")
     @ApiResponses({ @ApiResponse(responseCode = "201", description = "Creada"),
-                    @ApiResponse(responseCode = "400", description = "Datos inválidos") })
+                    @ApiResponse(responseCode = "400", description = "Datos invalidos") })
     @PostMapping
     public ResponseEntity<Marca> agregarMarca(@RequestBody Marca marca) {
         try {

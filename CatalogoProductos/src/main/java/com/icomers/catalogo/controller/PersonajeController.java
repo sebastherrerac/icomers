@@ -16,7 +16,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/personajes")
-@Tag(name = "Personajes", description = "Gestión de personajes de figuras de colección")
+@Tag(name = "Personajes", description = "Gestion de personajes de figuras de coleccion")
 public class PersonajeController {
 
     @Autowired

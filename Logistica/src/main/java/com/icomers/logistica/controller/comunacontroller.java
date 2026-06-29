@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/comuna")
-@Tag(name = "Comunas", description = "Gestión de comunas del país")
+@Tag(name = "Comunas", description = "Gestion de comunas del pais")
 public class comunacontroller {
 
     @Autowired
@@ -48,7 +48,7 @@ public class comunacontroller {
 
     @Operation(summary = "Crear comuna")
     @ApiResponses({ @ApiResponse(responseCode = "201", description = "Creada"),
-                    @ApiResponse(responseCode = "400", description = "Datos inválidos") })
+                    @ApiResponse(responseCode = "400", description = "Datos invalidos") })
     @PostMapping
     public ResponseEntity<?> guardarcomuna(@Valid @RequestBody comuna objeto) {
         try {

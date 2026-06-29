@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/tipoenvio")
-@Tag(name = "Tipos de Envío", description = "Gestión de modalidades de envío")
+@Tag(name = "Tipos de Envio", description = "Gestion de modalidades de envio")
 public class tipoenviocontroller {
 
     @Autowired
@@ -48,7 +48,7 @@ public class tipoenviocontroller {
 
     @Operation(summary = "Crear tipo de envío")
     @ApiResponses({ @ApiResponse(responseCode = "201", description = "Creado"),
-                    @ApiResponse(responseCode = "400", description = "Datos inválidos") })
+                    @ApiResponse(responseCode = "400", description = "Datos invalidos") })
     @PostMapping
     public ResponseEntity<?> guardartipoenvio(@Valid @RequestBody tipoenvio objeto) {
         try {

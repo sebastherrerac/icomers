@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/region")
-@Tag(name = "Regiones", description = "Gestión de regiones del país")
+@Tag(name = "Regiones", description = "Gestion de regiones del pais")
 public class regioncontroller {
 
     @Autowired
@@ -48,7 +48,7 @@ public class regioncontroller {
 
     @Operation(summary = "Crear región")
     @ApiResponses({ @ApiResponse(responseCode = "201", description = "Creada"),
-                    @ApiResponse(responseCode = "400", description = "Datos inválidos") })
+                    @ApiResponse(responseCode = "400", description = "Datos invalidos") })
     @PostMapping
     public ResponseEntity<?> guardarregion(@Valid @RequestBody region objeto) {
         try {

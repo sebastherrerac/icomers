@@ -17,13 +17,13 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/categorias")
-@Tag(name = "Categorías", description = "Gestión de categorías de productos")
+@Tag(name = "Categorias", description = "Gestion de categorias de productos")
 public class CategoriaController {
 
     @Autowired
     private CategoriaService categoriaService;
 
-    @Operation(summary = "Listar todas las categorías")
+    @Operation(summary = "Listar todas las categorias")
     @ApiResponses({ @ApiResponse(responseCode = "200", description = "OK"),
                     @ApiResponse(responseCode = "204", description = "Sin registros") })
     @GetMapping
@@ -33,9 +33,9 @@ public class CategoriaController {
         return new ResponseEntity<>(categorias, HttpStatus.OK);
     }
 
-    @Operation(summary = "Crear categoría")
+    @Operation(summary = "Crear categoria")
     @ApiResponses({ @ApiResponse(responseCode = "201", description = "Creada"),
-                    @ApiResponse(responseCode = "400", description = "Datos inválidos") })
+                    @ApiResponse(responseCode = "400", description = "Datos invalidos") })
     @PostMapping
     public ResponseEntity<Categoria> agregarCategoria(@RequestBody Categoria categoria) {
         try {
@@ -45,7 +45,7 @@ public class CategoriaController {
         }
     }
 
-    @Operation(summary = "Actualizar categoría")
+    @Operation(summary = "Actualizar categoria")
     @ApiResponses({ @ApiResponse(responseCode = "200", description = "Actualizada"),
                     @ApiResponse(responseCode = "404", description = "No encontrada") })
     @PutMapping("/{id}")
@@ -57,7 +57,7 @@ public class CategoriaController {
         }
     }
 
-    @Operation(summary = "Eliminar categoría")
+    @Operation(summary = "Eliminar categoria")
     @ApiResponses({ @ApiResponse(responseCode = "200", description = "Eliminada"),
                     @ApiResponse(responseCode = "404", description = "No encontrada") })
     @DeleteMapping("/{id}")

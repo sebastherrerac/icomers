@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/figuras")
-@Tag(name = "Figuras", description = "Gestión de figuras de colección")
+@Tag(name = "Figuras", description = "Gestion de figuras de coleccion")
 public class FigurasController {
 
     @Autowired
@@ -46,7 +46,7 @@ public class FigurasController {
         }
     }
 
-    @Operation(summary = "Buscar figuras por categoría")
+    @Operation(summary = "Buscar figuras por categoria")
     @ApiResponse(responseCode = "200", description = "OK")
     @GetMapping("/categoria/{idCategoria}")
     public ResponseEntity<List<FigurasDTO>> buscarPorCategoria(@PathVariable Integer idCategoria) {
@@ -57,7 +57,7 @@ public class FigurasController {
 
     @Operation(summary = "Crear figura")
     @ApiResponses({ @ApiResponse(responseCode = "201", description = "Creada"),
-                    @ApiResponse(responseCode = "400", description = "Datos inválidos") })
+                    @ApiResponse(responseCode = "400", description = "Datos invalidos") })
     @PostMapping
     public ResponseEntity<Figuras> guardarFigura(@RequestBody Figuras figura) {
         try {
